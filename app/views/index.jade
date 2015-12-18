@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  .mdl-layout.mdl-js-layout.mdl-js-layout.mdl-layout--fixed-header
+    header.mdl-layout__header.mdl-color--blue-500.mdl-color-text--white
+      .mdl-layout__header-row
+        span.mdl-layout-title Weather Web
+        .mdl-layout-spacer
+        button#hdrbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--ico
+          i.material-icons more_vert
+        ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right(for="hdrbtn")
+          li.mdl-menu__item About
+          li.mdl-menu__item Contact
+
+    main.mdl-layout__content.mdl-color--grey-100
+      .mdl-grid.demo-content
+
+        .demo-cards.mdl-cell.mdl-cell--3-col.mdl-cell--3-col-tablet.mdl-cell--12-col-phone.mdl-grid.mdl-grid--no-spacing
+
+          .demo-updates.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-desktop
+            .mdl-card__title.mdl-card--expand.mdl-color--grey-200.color_me1
+              h2#currentOutlook.mdl-card__title-text Sunny
+              img(src="/images/weather/Degrees-Fahrenheit.svg")#currentIcon
+            #currentWeather.mdl-card__actions.mdl-card--border 0
+
+          .demo-separator.mdl-cell--1-col
+          .demo-updates.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-desktop
+            .mdl-card__title.mdl-card--expand.mdl-color--grey-300.color_me2
+              h2#currentTemp.mdl-card__title-text 0
+              img(src="/images/weather/Thermometer-50.svg")
+            .mdl-card__actions.mdl-card--border Temperature (F)
+
+          .demo-separator.mdl-cell--1-col
+          .demo-updates.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-desktop
+            .mdl-card__title.mdl-card--expand.mdl-color--grey-400.color_me3
+              h2#currentRain.mdl-card__title-text 0
+              img(src="/images/weather/Cloud-Rain.svg")
+            .mdl-card__actions.mdl-card--border Rainfall (Inches)
+
+          .demo-separator.mdl-cell--1-col
+          .demo-updates.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-desktop
+            .mdl-card__title.mdl-card--expand.mdl-color--grey-500.color_me4
+              h2#currentWind.mdl-card__title-text 0
+              img(src="/images/weather/wind.svg")
+            .mdl-card__actions.mdl-card--border Wind Speed (MPH)
+
+          .demo-separator.mdl-cell--1-col
+          .demo-updates.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-desktop
+            .mdl-card__title.mdl-card--expand.mdl-color--grey-600.color_me5
+              h2#currentHumid.mdl-card__title-text 0
+              img(src="/images/weather/Degrees-Fahrenheit.svg")
+            .mdl-card__actions.mdl-card--border Humidity (F)
+
+        .demo-graphs.mdl-shadow--2dp.mdl-color--white.mdl-cell.mdl-cell--9-col.mdl-cell--9-col-tablet.mdl-cell--12-col-phone.chart-container
+          #lineChart
+
+
