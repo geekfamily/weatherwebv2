@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
+    jade = require('gulp-jade');
     extend = require('extend'),
     parseArgs   = require('minimist'),
     del = require('del');
@@ -36,30 +37,37 @@ gulp.task('clean', function() {
 
 gulp.task('sass', function () {
     return sass(paths.sass)
-        .pipe(gulp.dest(appRoot+'/client/stylesheets/sass'));
+        .pipe(gulp.dest(appRoot+'/client/stylesheets'));
+});
+
+gulp.task('jade', function() {
+    return gulp.src('app/views/**/*.jade')
+      .pipe(jade()) // pip to jade plugin
+      .pipe(gulp.dest(appRoot+'/client')); // tell gulp our output folder
 });
 
 gulp.task('static', function () {
     gulp.src(['./client/images/**'])
-        .pipe(gulp.dest(appRoot+'/client/img'));
+        .pipe(gulp.dest(appRoot+'/client/images'));
     gulp.src(['./client/components/**/*.html'])
         .pipe(gulp.dest(appRoot+'/client/components'));
-    gulp.src(['./client/home/**/*.html'])
-        .pipe(gulp.dest(appRoot+'/client/home'));
+    //gulp.src(['./client/home/**/*.html'])
+    //    .pipe(gulp.dest(appRoot+'/client/home'));
     gulp.src(['./client/**/*.ico'])
         .pipe(gulp.dest(appRoot+'/client'));
-    gulp.src(['./client/lib/**/*.min.css'])
-        .pipe(gulp.dest(appRoot+'/client/lib'));
+    gulp.src(['./client/stylesheets/**/*.css'])
+      .pipe(gulp.dest(appRoot+'/client/stylesheets'));
+    gulp.src(['./client/components/**/*.min.css'])
+        .pipe(gulp.dest(appRoot+'/client/components'));
 });
 
 gulp.task('js', function() {
-    gulp.src('./client/lib/**/*.js')
-        .pipe(gulp.dest(appRoot+'/client/lib'));
-    gulp.src(['./client/home/**/*.js'])
+    gulp.src('./client/components/**/*.js')
+        .pipe(gulp.dest(appRoot+'/client/components'));
+    gulp.src(['./client/javascripts/**/*.js'])
         .pipe(uglify())
-        .pipe(gulp.dest(appRoot+'/client/home'));
+        .pipe(gulp.dest(appRoot+'/client/javascripts'));
     gulp.src(['./client/components/**/*.js'])
-        .pipe(uglify())
         .pipe(gulp.dest(appRoot+'/client/components'));
     gulp.src(['./client/users/**/*.js'])
         .pipe(uglify())
@@ -82,10 +90,10 @@ gulp.task('server', function() {
 
 });
 
-gulp.task('develop', ['set-dev-node-env' ,'sass', 'static', 'js', 'server'], function() {
+gulp.task('develop', ['set-dev-node-env' ,'sass', 'jade', 'static', 'js', 'server'], function() {
 
 });
-gulp.task('deploy', ['set-prod-node-env', 'clean', 'sass', 'static', 'js', 'server'], function() {
+gulp.task('deploy', ['set-prod-node-env', 'clean', 'sass', 'jade', 'static', 'js', 'server'], function() {
 
 });
 
