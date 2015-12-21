@@ -80,6 +80,10 @@ var spark = {
 
 };
 
+//kickoff the event listener
+var req = {query: {eventName: "com.geekfamily.weather_update"}};
+spark.eventListen(req,null)
+
 function ServiceResponse(res, result, status) {
     var statusCode = status || 200;
     res.type('application/json').send(statusCode, {metadata: {}, result: devices});
